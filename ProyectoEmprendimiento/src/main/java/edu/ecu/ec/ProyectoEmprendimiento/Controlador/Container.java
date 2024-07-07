@@ -1,46 +1,64 @@
 package edu.ecu.ec.ProyectoEmprendimiento.Controlador;
 
 import edu.ecu.ec.ProyectoEmprendimiento.Coneccion.ClientService;
-import edu.ecu.ec.ProyectoEmprendimiento.Coneccion.GasolineService;
+import edu.ecu.ec.ProyectoEmprendimiento.Coneccion.InvoiceService;
+import edu.ecu.ec.ProyectoEmprendimiento.Coneccion.ProductService;
 import edu.ecu.ec.ProyectoEmprendimiento.Models.Client;
-import edu.ecu.ec.ProyectoEmprendimiento.Models.Gasoline;
+import edu.ecu.ec.ProyectoEmprendimiento.Models.Invoice;
+import edu.ecu.ec.ProyectoEmprendimiento.Models.ProductSale;
+import edu.ecu.ec.ProyectoEmprendimiento.Models.Products;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class Container {
     @Autowired
-    ClientService client;
+     ClientService clientService;
     @Autowired
-    GasolineService gasoline;
+     ProductService productService;
+    @Autowired
+    private InvoiceService invoiceService;
 
-    public void createC(String placa, String name, String email, String phone, String dir) {
-        Client c = new Client();
-        c.setPlaca(placa);
-        c.setName_client(name);
-        c.setEmail(email);
-        c.setPhone(phone);
-        c.setDir(dir);
-        client.save(c);
+
+    public void createClient(String placa, String name, String email, String phone, String dir) {
+        Client client = new Client();
+        client.setPlaca(placa);
+        client.setName_client(name);
+        client.setEmail(email);
+        client.setPhone(phone);
+        client.setDir(dir);
+        clientService.save(client);
     }
+
     public Client getClientByPlaca(String placa) {
-        return client.findByPlaca(placa);
+        return clientService.findByPlaca(placa);
     }
 
-    public void createG(Long id, String type, double price, double quantity) {
-        Gasoline g = new Gasoline();
-        g.setId(id);
-        g.setType(type);
-        g.setPrice(price);
-        g.setQuantity(quantity);
-        gasoline.save(g);
+    public void createProduct(String name, double price, int stock) {
+        productService.createProduct(new Products(name, price, stock));
     }
 
-    public Gasoline getGasolineById(String type) {
-        return gasoline.getGasoline(type);
+    public Products getProductByName(String nameProduct) {
+        return productService.getProductByName(nameProduct);
     }
-
-
-
+    public Invoice createInvoice(String placa, List<ProductSale> productSales) {
+        Client client = getClientByPlaca(placa);
+        double totalAmount = productSales.stream().mapToDouble(ps -> ps.getQuantity() * ps.getProduct().getPrice()).sum();
+        return invoiceService.createInvoice(client, productSales, totalAmount);
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+

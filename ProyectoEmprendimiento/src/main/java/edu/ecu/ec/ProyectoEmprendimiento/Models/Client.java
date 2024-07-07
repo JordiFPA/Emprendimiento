@@ -1,31 +1,38 @@
 package edu.ecu.ec.ProyectoEmprendimiento.Models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 public class Client {
     @Id
     private String placa;
+
     @Column(name = "name_client")
     private String name_client;
+
     @Column(name = "email")
-    private String Email;
+    private String email;
+
     @Column(name = "phone")
-    private String Phone;
+    private String phone;
+
     @Column(name = "dir")
     private String dir;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<Invoice> invoices;
 
     public Client() {
     }
 
-    public Client(String placa, String name_client, String email, String phone, String dir) {
+    public Client(String placa, String name_client, String email, String phone, String dir, List<Invoice> invoices) {
         this.placa = placa;
         this.name_client = name_client;
-        Email = email;
-        Phone = phone;
+        this.email = email;
+        this.phone = phone;
         this.dir = dir;
+        this.invoices = invoices;
     }
 
     public String getDir() {
@@ -37,19 +44,19 @@ public class Client {
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getPhone() {
-        return Phone;
+        return phone;
     }
 
     public void setPhone(String phone) {
-        Phone = phone;
+        this.phone = phone;
     }
 
     public String getPlaca() {
@@ -60,7 +67,6 @@ public class Client {
         this.placa = placa;
     }
 
-
     public String getName_client() {
         return name_client;
     }
@@ -69,13 +75,21 @@ public class Client {
         this.name_client = name_client;
     }
 
+    public List<Invoice> getInvoices() {
+        return invoices;
+    }
+
+    public void setInvoices(List<Invoice> invoices) {
+        this.invoices = invoices;
+    }
+
     @Override
     public String toString() {
         return "Client{" +
                 "placa='" + placa + '\'' +
                 ", name_client='" + name_client + '\'' +
-                ", Email='" + Email + '\'' +
-                ", Phone='" + Phone + '\'' +
+                ", Email='" + email + '\'' +
+                ", Phone='" + phone + '\'' +
                 ", dir='" + dir + '\'' +
                 '}';
     }

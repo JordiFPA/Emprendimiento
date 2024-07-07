@@ -1,6 +1,7 @@
 package edu.ecu.ec.ProyectoEmprendimiento.Models;
 
 import jakarta.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class ProductSale {
@@ -22,11 +23,10 @@ public class ProductSale {
     public ProductSale() {
     }
 
-    public ProductSale(Invoice invoice, Long id, int quantity, Products product) {
+    public ProductSale(Invoice invoice, Products product, int quantity) {
         this.invoice = invoice;
-        this.id = id;
-        this.quantity = quantity;
         this.product = product;
+        this.quantity = quantity;
     }
 
     public Long getId() {
@@ -60,4 +60,15 @@ public class ProductSale {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    @Override
+    public String toString() {
+        return "ProductSale{" +
+                "id=" + id +
+                ", invoice=" + invoice +
+                ", product=" + product +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
+

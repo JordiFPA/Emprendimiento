@@ -1,27 +1,40 @@
 package edu.ecu.ec.ProyectoEmprendimiento.Models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Products {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "name_product")
-    private String name_product;
+
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "price")
     private double price;
+
     @Column(name = "stock")
     private int stock;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ProductSale> productSales;
 
     public Products() {
     }
 
-    public Products(long id, String name_product, double price, int stock) {
+    public Products(long id, String name, double price, int stock, List<ProductSale> productSales) {
         this.id = id;
-        this.name_product = name_product;
+        this.name = name;
+        this.price = price;
+        this.stock = stock;
+        this.productSales = productSales;
+    }
+
+    public Products(String name, double price, int stock) {
+        this.name = name;
         this.price = price;
         this.stock = stock;
     }
@@ -34,12 +47,12 @@ public class Products {
         this.id = id;
     }
 
-    public String getName_product() {
-        return name_product;
+    public String getName() {
+        return name;
     }
 
-    public void setName_product(String name_product) {
-        this.name_product = name_product;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getStock() {
@@ -58,13 +71,18 @@ public class Products {
         this.price = price;
     }
 
+    public List<ProductSale> getProductSales() {
+        return productSales;
+    }
+
+    public void setProductSales(List<ProductSale> productSales) {
+        this.productSales = productSales;
+    }
+
     @Override
     public String toString() {
-        return "Products{" +
-                "id=" + id +
-                ", name_product='" + name_product + '\'' +
-                ", price=" + price +
-                ", stock=" + stock +
-                '}';
+        return "Products{" + "id=" + id + ", name_product='" + name+ '\'' + ", price=" + price + ", stock=" + stock + '}';
     }
 }
+
+
