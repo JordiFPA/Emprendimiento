@@ -4,6 +4,9 @@ import edu.ecu.ec.ProyectoEmprendimiento.Models.Products;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ProductService {
     @Autowired
@@ -16,5 +19,26 @@ public class ProductService {
     public Products getProductByName(String name) {
         return productRepository.findByName(name);
     }
+
+    public List<Products> getAllProducts() {
+        return productRepository.findAll();
+    }
+
+    public Products updateProduct(long id, Products updatedProduct) {
+        Optional<Products> existingProductOptional = productRepository.findById(id);
+        if (existingProductOptional.isPresent()) {
+            Products existingProduct = existingProductOptional.get();
+            existingProduct.setName(updatedProduct.getName());
+            existingProduct.setPrice(updatedProduct.getPrice());
+            existingProduct.setStock(updatedProduct.getStock());
+            return productRepository.save(existingProduct);
+        } else {
+            return null;
+        }
+    }
+
+
+
+
 }
 
