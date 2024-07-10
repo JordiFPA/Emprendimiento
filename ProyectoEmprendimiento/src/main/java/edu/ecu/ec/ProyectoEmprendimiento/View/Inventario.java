@@ -3,10 +3,13 @@ package edu.ecu.ec.ProyectoEmprendimiento.View;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
+import java.awt.*;
+
 @Component
 public class Inventario extends JFrame {
     public Inventario() {
         initComponents();
+        centerFrame();
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -120,6 +123,13 @@ public class Inventario extends JFrame {
             }
         });
     }
+
+    private void centerFrame() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension frameSize = getSize();
+        setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+    }
+
     private javax.swing.JButton actualizarButton;
     private javax.swing.JButton agregarButton;
     private javax.swing.JButton buscarButton;

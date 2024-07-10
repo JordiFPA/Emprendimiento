@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
+import java.awt.*;
 
 @Component
 public class NewJFrame2 extends JFrame {
@@ -14,7 +15,8 @@ public class NewJFrame2 extends JFrame {
 
     public NewJFrame2() throws Exception {
         try {
-            initComponents(); // Aquí es donde se inicializan los componentes de Swing
+            initComponents();
+            centerFrame();// Aquí es donde se inicializan los componentes de Swing
         } catch (Exception ex) {
             // Manejar la excepción de inicialización aquí
             ex.printStackTrace(); // Imprime la traza de la excepción en consola
@@ -200,6 +202,13 @@ public class NewJFrame2 extends JFrame {
         }
         // Lógica adicional para la acción "SIGUIENTE"
     }
+
+    private void centerFrame() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension frameSize = getSize();
+        setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+    }
+
 
 
     private javax.swing.JButton jButton1;

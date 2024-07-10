@@ -6,16 +6,19 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 @Component
 public class NewJFrame extends JFrame {
     @Autowired
     private ApplicationContext applicationContext;
 
-    public NewJFrame()throws Exception {
+    public NewJFrame() throws Exception {
         try {
             initComponents();
+            centerFrame();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -26,7 +29,7 @@ public class NewJFrame extends JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jPasswordField = new JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -34,8 +37,11 @@ public class NewJFrame extends JFrame {
         jButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                VentanaPrincipal ventana = applicationContext.getBean(VentanaPrincipal.class);
-                ventana.setVisible(true);
+                if (loginButtonActionPerformed(e)) {
+                    VentanaPrincipal ventana = applicationContext.getBean(VentanaPrincipal.class);
+                    ventana.setVisible(true);
+                    dispose(); // Cerrar la ventana de login
+                }
             }
         });
 
@@ -52,7 +58,7 @@ public class NewJFrame extends JFrame {
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
-                jTextField2.requestFocus();
+                jPasswordField.requestFocus();
             }
         });
 
@@ -79,7 +85,7 @@ public class NewJFrame extends JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                                        .addComponent(jTextField2))
+                                        .addComponent(jPasswordField))
                                 .addGap(84, 84, 84))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(107, 107, 107)
@@ -101,7 +107,7 @@ public class NewJFrame extends JFrame {
                                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
                                 .addGap(31, 31, 31)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -132,15 +138,36 @@ public class NewJFrame extends JFrame {
         // TODO add your handling code here:
     }
 
+    private boolean loginButtonActionPerformed(ActionEvent evt) {
+        String usuario = jTextField1.getText();
+        String password = String.valueOf(jPasswordField.getPassword());
 
-    // Variables declaration - do not modify
+        if (usuario.equals("USER") && password.equals("123")) {
+            // Login successful
+            JOptionPane.showMessageDialog(this, "Login exitoso", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            return true;
+        } else {
+            // Login failed
+            jPasswordField.setText("");
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+            jPasswordField.requestFocus();
+            return false;
+        }
+    }
+    private void centerFrame() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension frameSize = getSize();
+        setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+    }
+
+
+
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    // End of variables declaration
+    private JPasswordField jPasswordField;
 }
 
