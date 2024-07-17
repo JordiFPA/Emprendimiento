@@ -4,9 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import java.awt.FlowLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 @Component
 public class VentanaPrincipal extends javax.swing.JFrame {
     @Autowired
@@ -24,7 +21,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         logo = new javax.swing.JLabel();
         ventaButton = new javax.swing.JButton();
         inventarioButton = new javax.swing.JButton();
-        cargarButton = new javax.swing.JButton();
+        gasolinaButton = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,9 +55,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        cargarButton.setText("Cargar Tanques");
+        gasolinaButton.setText("Inventario Gasolina");
 
-        jButton5.setText("ASDF");
+        jButton5.setText("Facturas");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,7 +74,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(cargarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                                        .addComponent(gasolinaButton, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                                         .addComponent(ventaButton, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +95,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                         .addComponent(inventarioButton, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(cargarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                                        .addComponent(gasolinaButton, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                                         .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
                                 .addGap(126, 126, 126))
         );
@@ -121,7 +118,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
 
-    private javax.swing.JButton cargarButton;
+    private javax.swing.JButton gasolinaButton;
     private javax.swing.JButton inventarioButton;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel logo;

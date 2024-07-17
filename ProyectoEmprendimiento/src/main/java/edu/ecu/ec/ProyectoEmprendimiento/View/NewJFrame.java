@@ -142,9 +142,8 @@ public class NewJFrame extends JFrame {
         String usuario = jTextField1.getText();
         String password = String.valueOf(jPasswordField.getPassword());
 
-        if (usuario.equals("USER") && password.equals("123")) {
+        if (usuario.toUpperCase().equals("USER") && password.equals("123")) {
             // Login successful
-            JOptionPane.showMessageDialog(this, "Login exitoso", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
             return true;
         } else {
             // Login failed

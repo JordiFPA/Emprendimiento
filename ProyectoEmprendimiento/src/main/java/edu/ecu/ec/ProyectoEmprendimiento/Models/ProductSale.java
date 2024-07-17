@@ -1,6 +1,6 @@
 package edu.ecu.ec.ProyectoEmprendimiento.Models;
 
-import jakarta.persistence.*;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -20,6 +20,9 @@ public class ProductSale {
     @Column(name = "quantity")
     private int quantity;
 
+    @Column(name = "total")
+    private double total;
+
     public ProductSale() {
     }
 
@@ -27,6 +30,7 @@ public class ProductSale {
         this.invoice = invoice;
         this.product = product;
         this.quantity = quantity;
+        this.total = calculateTotal(); // Calculamos el total en el constructor
     }
 
     public Long getId() {
@@ -59,6 +63,19 @@ public class ProductSale {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+        this.total = calculateTotal(); // Recalculamos el total al cambiar la cantidad
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    private double calculateTotal() {
+        if (product != null) {
+            return product.getPrice() * quantity;
+        } else {
+            return 0.0;
+        }
     }
 
     @Override
@@ -68,7 +85,7 @@ public class ProductSale {
                 ", invoice=" + invoice +
                 ", product=" + product +
                 ", quantity=" + quantity +
+                ", total=" + total +
                 '}';
     }
 }
-

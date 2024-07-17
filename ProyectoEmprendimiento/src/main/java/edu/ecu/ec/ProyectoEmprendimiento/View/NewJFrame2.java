@@ -3,6 +3,7 @@ package edu.ecu.ec.ProyectoEmprendimiento.View;
 import edu.ecu.ec.ProyectoEmprendimiento.Coneccion.ClientService;
 import edu.ecu.ec.ProyectoEmprendimiento.Models.Client;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -12,11 +13,15 @@ import java.awt.*;
 public class NewJFrame2 extends JFrame {
     @Autowired
     ClientService clientService;
+    @Autowired
+    private ApplicationContext applicationContext;
+
 
     public NewJFrame2() throws Exception {
         try {
             initComponents();
             centerFrame();// Aquí es donde se inicializan los componentes de Swing
+            this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         } catch (Exception ex) {
             // Manejar la excepción de inicialización aquí
             ex.printStackTrace(); // Imprime la traza de la excepción en consola
@@ -81,6 +86,7 @@ public class NewJFrame2 extends JFrame {
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jButton2.setText("SIGUIENTE");
+
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -198,9 +204,10 @@ public class NewJFrame2 extends JFrame {
             cliente.setDir(jTextField5.getText());
             clientService.save(cliente);
         } else {
-            // Aquí podrías implementar la actualización si lo deseas
         }
-        // Lógica adicional para la acción "SIGUIENTE"
+        Ventas ventana = applicationContext.getBean(Ventas.class);
+        ventana.setVisible(true);
+        dispose();
     }
 
     private void centerFrame() {
