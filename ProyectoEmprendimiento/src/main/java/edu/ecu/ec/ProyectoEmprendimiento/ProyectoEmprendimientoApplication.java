@@ -1,6 +1,6 @@
 package edu.ecu.ec.ProyectoEmprendimiento;
 
-import edu.ecu.ec.ProyectoEmprendimiento.View.NewJFrame;
+import edu.ecu.ec.ProyectoEmprendimiento.View.Login;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +14,7 @@ public class ProyectoEmprendimientoApplication {
     public static void main(String[] args) {
         System.setProperty("java.awt.headless", "false");
         ApplicationContext context = SpringApplication.run(ProyectoEmprendimientoApplication.class, args);
-        NewJFrame frame = context.getBean(NewJFrame.class);
+        Login frame = context.getBean(Login.class);
         frame.setVisible(true);
 
 
