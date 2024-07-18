@@ -1,0 +1,6 @@
+principal()
+fondos > (221, 202, 155)
+detalles > ()
+
+font para textos > ("Leelawadee", 1, 20)
+font para botones > ("Segoe UI", 1, 18)

@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 @Component
 public class Login extends JFrame {
@@ -33,7 +34,7 @@ public class Login extends JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
+        setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource("/logo.png"))).getImage()); //poner icono a la ventana
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setResizable(false);
@@ -54,10 +55,8 @@ public class Login extends JFrame {
 
         jPanel1.setBackground(new java.awt.Color(221, 202, 155));
 
-        loginImage.setFont(new java.awt.Font("Serif", 3, 36)); // NOI18N
         loginImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        loginImage.setIcon(new ImageIcon(getClass().getResource("/login.png")));
-
+        loginImage.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/login.png"))));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
