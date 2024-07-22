@@ -1,8 +1,6 @@
 package edu.ecu.ec.ProyectoEmprendimiento.Models;
 
 import jakarta.persistence.*;
-
-import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -18,20 +16,15 @@ public class Invoice {
     @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL)
     private List<ProductSale> productSales;
 
-    @Column(name = "Fecha_emision")
-    private LocalDate issueDate;
-
     @Column(name = "total_amount")
     private double totalAmount;
 
-
     public Invoice() {}
 
-    public Invoice(Client client, List<ProductSale> productSales, double totalAmount,LocalDate issueDate) {
+    public Invoice(Client client, List<ProductSale> productSales, double totalAmount) {
         this.client = client;
         this.productSales = productSales;
         this.totalAmount = totalAmount;
-        this.issueDate = issueDate;
     }
 
     public Long getId() {
@@ -64,14 +57,6 @@ public class Invoice {
 
     public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
-    }
-
-    public LocalDate getIssueDate() {
-        return issueDate;
-    }
-
-    public void setIssueDate(LocalDate issueDate) {
-        this.issueDate = issueDate;
     }
 
     @Override

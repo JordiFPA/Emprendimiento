@@ -1,6 +1,6 @@
 package edu.ecu.ec.ProyectoEmprendimiento.View;
 
-import edu.ecu.ec.ProyectoEmprendimiento.Services.ProductService;
+import edu.ecu.ec.ProyectoEmprendimiento.Coneccion.ProductService;
 import edu.ecu.ec.ProyectoEmprendimiento.Models.Products;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

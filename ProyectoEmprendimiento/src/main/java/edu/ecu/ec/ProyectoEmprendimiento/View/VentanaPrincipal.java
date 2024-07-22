@@ -13,12 +13,12 @@ public class VentanaPrincipal extends JFrame {
     @Autowired
     private ApplicationContext applicationContext;
 
-    private Login login;
-
-    public VentanaPrincipal() throws Exception {
+    public VentanaPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         titulo = new javax.swing.JLabel();
@@ -64,11 +64,6 @@ public class VentanaPrincipal extends JFrame {
 
         facturasButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18NjButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         facturasButton.setText("Facturas");
-        facturasButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                facturasButtonActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,24 +119,6 @@ public class VentanaPrincipal extends JFrame {
 
         VentasFrame ventaVentas = applicationContext.getBean(VentasFrame.class);
         ventaVentas.setVisible(true);
-    }
-
-    private void facturasButtonActionPerformed(java.awt.event.ActionEvent evt) {
-
-        if (login.getTrabajadorActual().getRango().equals("admin")) {
-            JOptionPane.showMessageDialog(null, "Correcto, Pingrese");
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Solo administradores pueden ingresar");
-        }
-    }
-
-    public Login getLogin() {
-        return login;
-    }
-
-    public void setLogin(Login login) {
-        this.login = login;
     }
 
     private javax.swing.JButton gasolinaButton;

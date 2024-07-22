@@ -1,7 +1,5 @@
 package edu.ecu.ec.ProyectoEmprendimiento.View;
 
-import edu.ecu.ec.ProyectoEmprendimiento.Services.TrabajadoresService;
-import edu.ecu.ec.ProyectoEmprendimiento.Models.Trabajadores;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -16,12 +14,6 @@ import java.util.Objects;
 public class Login extends JFrame {
     @Autowired
     private ApplicationContext applicationContext;
-
-    @Autowired
-    private TrabajadoresService trabajador;
-
-    private Trabajadores trabajadorActual;
-
 
     public Login() throws Exception {
         try {
@@ -52,7 +44,6 @@ public class Login extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (loginButtonActionPerformed(e)) {
                     VentanaPrincipal ventana = applicationContext.getBean(VentanaPrincipal.class);
-                    ventana.setLogin(Login.this);
                     ventana.setVisible(true);
                     dispose(); // Cerrar la ventana de login
                 }
@@ -149,9 +140,11 @@ public class Login extends JFrame {
     }
 
     private boolean loginButtonActionPerformed(ActionEvent evt) {
+        String usuario = jTextField1.getText();
         String password = String.valueOf(jPasswordField.getPassword());
-        trabajadorActual = trabajador.buscarTrabajador(Long.parseLong(jTextField1.getText()));
-        if (trabajadorActual != null && password.equals(trabajadorActual.getContraseña())) {
+
+        if (usuario.toUpperCase().equals("USER") && password.equals("123")) {
+            // Login successful
             return true;
         } else {
             // Login failed
@@ -165,14 +158,6 @@ public class Login extends JFrame {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension frameSize = getSize();
         setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
-    }
-
-    public Trabajadores getTrabajadorActual() {
-        return trabajadorActual;
-    }
-
-    public void setTrabajadorActual(Trabajadores trabajadorActual) {
-        this.trabajadorActual = trabajadorActual;
     }
 
     private javax.swing.JButton jButton1;
