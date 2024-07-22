@@ -1,8 +1,8 @@
 package edu.ecu.ec.ProyectoEmprendimiento.Controlador;
 
-import edu.ecu.ec.ProyectoEmprendimiento.Coneccion.ClientService;
-import edu.ecu.ec.ProyectoEmprendimiento.Coneccion.InvoiceService;
-import edu.ecu.ec.ProyectoEmprendimiento.Coneccion.ProductService;
+import edu.ecu.ec.ProyectoEmprendimiento.Services.ClientService;
+import edu.ecu.ec.ProyectoEmprendimiento.Services.InvoiceService;
+import edu.ecu.ec.ProyectoEmprendimiento.Services.ProductService;
 import edu.ecu.ec.ProyectoEmprendimiento.Models.Client;
 import edu.ecu.ec.ProyectoEmprendimiento.Models.Invoice;
 import edu.ecu.ec.ProyectoEmprendimiento.Models.ProductSale;

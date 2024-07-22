@@ -70,12 +70,16 @@ public class ProductSale {
         return total;
     }
 
-    private double calculateTotal() {
+    public double calculateTotal() {
         if (product != null) {
             return product.getPrice() * quantity;
         } else {
             return 0.0;
         }
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     @Override

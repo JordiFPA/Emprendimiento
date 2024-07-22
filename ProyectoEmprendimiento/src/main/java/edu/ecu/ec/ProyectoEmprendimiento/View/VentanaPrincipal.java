@@ -13,12 +13,12 @@ public class VentanaPrincipal extends JFrame {
     @Autowired
     private ApplicationContext applicationContext;
 
-    public VentanaPrincipal() {
+    private Login login;
+
+    public VentanaPrincipal() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         titulo = new javax.swing.JLabel();
@@ -64,6 +64,11 @@ public class VentanaPrincipal extends JFrame {
 
         facturasButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18NjButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         facturasButton.setText("Facturas");
+        facturasButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                facturasButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,22 +122,26 @@ public class VentanaPrincipal extends JFrame {
 
     private void ventaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventarioButtonActionPerformed
 
-        NewJFrame2 venta = applicationContext.getBean(NewJFrame2.class);
-        venta.setVisible(true);
+        VentasFrame ventaVentas = applicationContext.getBean(VentasFrame.class);
+        ventaVentas.setVisible(true);
     }
 
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                VentanaPrincipal frame;
-                try {
-                    frame = new VentanaPrincipal();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                frame.setVisible(true);
-            }
-        });
+    private void facturasButtonActionPerformed(java.awt.event.ActionEvent evt) {
+
+        if (login.getTrabajadorActual().getRango().equals("admin")) {
+            JOptionPane.showMessageDialog(null, "Correcto, Pingrese");
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Solo administradores pueden ingresar");
+        }
+    }
+
+    public Login getLogin() {
+        return login;
+    }
+
+    public void setLogin(Login login) {
+        this.login = login;
     }
 
     private javax.swing.JButton gasolinaButton;
